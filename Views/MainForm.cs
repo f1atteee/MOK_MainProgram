@@ -187,9 +187,18 @@ namespace MOK_MainInterface.Views
             };
 
 
-            int result = BruteForce(richTextBox1.Text, 1, richTextBox1.Text.Length, testCallback);
-            int myRes = MyBruteForce(richTextBox1.Text, testCallback);
-            MessageBox.Show("Result - " + result + "\n\r" + "My result - " + myRes);
+            int result = BruteForce(richTextBox1.Text, Language);
+            MessageBox.Show("Result - " + result);
+        }
+
+        private void побудуватиЧастотніТаблиціToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            FrequencyTable fb = new FrequencyTable();
+            fb.InputText = richTextBox1.Text;
+            fb.KeyLenght = StepCrp;
+            fb.ShowDialog();
+            */
         }
     }
 }

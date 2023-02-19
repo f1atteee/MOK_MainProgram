@@ -138,6 +138,7 @@
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Name = "побудуватиЧастотніТаблиціToolStripMenuItem";
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Text = "Побудувати частотні таблиці";
+            this.побудуватиЧастотніТаблиціToolStripMenuItem.Click += new System.EventHandler(this.побудуватиЧастотніТаблиціToolStripMenuItem_Click);
             // 
             // проСистемуToolStripMenuItem
             // 
