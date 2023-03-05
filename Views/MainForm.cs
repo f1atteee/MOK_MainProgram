@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MOK_MainInterface.Cypher;
 using System.Drawing.Printing;
 using static MOK_MainInterface.Cypher.BruteForceAlgo;
+using System.Drawing.Imaging;
 
 namespace MOK_MainInterface.Views
 {
@@ -49,19 +50,38 @@ namespace MOK_MainInterface.Views
 
         private void відкритиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter =
-               "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            dialog.InitialDirectory = "C:\\";
-            dialog.Title = "Select a text file";
-            if (dialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string fname = dialog.FileName;
-                richTextBox1.Text = File.ReadAllText(fname, Encoding.UTF8);
-
-
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter =
+                   "All files (*.*)|*.*";
+                dialog.InitialDirectory = "C:\\";
+                dialog.Title = "Select your file";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fname = dialog.FileName;
+                    if (fname.Contains(".txt"))
+                    {
+                        richTextBox1.Text = File.ReadAllText(fname, Encoding.UTF8);
+                        MessageBox.Show("Ви відкрили текстовий файл.");
+                    }
+                    else
+                    {
+                        Image image = Image.FromFile(dialog.FileName);
+                        MemoryStream memoryStream = new MemoryStream();
+                        image.Save(memoryStream, ImageFormat.Png); // можна замінити на інший формат
+                        byte[] imageBytes = memoryStream.ToArray();
+                        string base64String = Convert.ToBase64String(imageBytes);
+                        richTextBox1.Text = base64String;
+                        MessageBox.Show("Ви відкрили зображення.");
+                    }
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Помилка - " + ex.Message);
+            }
+
         }
 
         private void trackBar1_Scroll_1(object sender, EventArgs e)
@@ -104,9 +124,7 @@ namespace MOK_MainInterface.Views
                     }
                 }
                 
-            }
-
-            
+            }          
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -145,26 +163,6 @@ namespace MOK_MainInterface.Views
             richTextBox2.Text = "";
         }
 
-        private void зберегтиToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog oSaveFileDialog = new SaveFileDialog();
-            oSaveFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            if (oSaveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string fileName = oSaveFileDialog.FileName;
-                string extesion = Path.GetExtension(fileName);
-                string fullPath = Path.GetFullPath(fileName);
-                switch (extesion)
-                {
-                    case ".txt":
-                        File.WriteAllText(fullPath, richTextBox1.Text);
-                        break;
-                    default://do something here
-                        break;
-                }
-            }
-        }
-
         private void друкToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if(printPreviewDialog1.ShowDialog() == DialogResult.OK)
@@ -175,7 +173,16 @@ namespace MOK_MainInterface.Views
 
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(richTextBox1.Text, new Font("Times New Roman", 14), Brushes.Black, new PointF(100, 100));
+            try
+            {
+                if (e.Graphics != null)
+                    e.Graphics.DrawString(richTextBox1.Text, new Font("Times New Roman", 14), Brushes.Black, new PointF(100, 100));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка - " + ex.Message);
+            }
+
         }
 
         private void методГрубоїСилиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -199,6 +206,55 @@ namespace MOK_MainInterface.Views
             fb.KeyLenght = StepCrp;
             fb.ShowDialog();
             */
+        }
+
+        private void зображенняToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string base64String = richTextBox1.Text;
+                byte[] imageBytes = Convert.FromBase64String(base64String);
+                MemoryStream memoryStream = new MemoryStream(imageBytes);
+                Image image = Image.FromStream(memoryStream);
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "PNG Image|*.png|JPEG Image|*.jpg;*.jpeg";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    image.Save(saveFileDialog.FileName, ImageFormat.Png);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Помилка - " + ex.Message);
+            }
+
+        }
+
+        private void текстToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog oSaveFileDialog = new SaveFileDialog();
+                oSaveFileDialog.Filter = "TXT files (*.txt)|*.txt|All files (*.*)|*.*";
+                if (oSaveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = oSaveFileDialog.FileName;
+                    string extesion = Path.GetExtension(fileName);
+                    string fullPath = Path.GetFullPath(fileName);
+                    switch (extesion)
+                    {
+                        case ".txt":
+                            File.WriteAllText(fullPath, richTextBox1.Text);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Помилка - " + ex.Message);
+            }
         }
     }
 }

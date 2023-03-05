@@ -33,6 +33,8 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.відкритиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зберегтиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.зображенняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.текстToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.друкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.шифруванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.атакаНаШифрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,21 +93,37 @@
             // відкритиToolStripMenuItem
             // 
             this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.відкритиToolStripMenuItem.Text = "Відкрити";
             this.відкритиToolStripMenuItem.Click += new System.EventHandler(this.відкритиToolStripMenuItem_Click);
             // 
             // зберегтиToolStripMenuItem
             // 
+            this.зберегтиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.зображенняToolStripMenuItem,
+            this.текстToolStripMenuItem});
             this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.зберегтиToolStripMenuItem.Text = "Зберегти";
-            this.зберегтиToolStripMenuItem.Click += new System.EventHandler(this.зберегтиToolStripMenuItem_Click);
+            // 
+            // зображенняToolStripMenuItem
+            // 
+            this.зображенняToolStripMenuItem.Name = "зображенняToolStripMenuItem";
+            this.зображенняToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.зображенняToolStripMenuItem.Text = "Зображення";
+            this.зображенняToolStripMenuItem.Click += new System.EventHandler(this.зображенняToolStripMenuItem_Click);
+            // 
+            // текстToolStripMenuItem
+            // 
+            this.текстToolStripMenuItem.Name = "текстToolStripMenuItem";
+            this.текстToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.текстToolStripMenuItem.Text = "Текст";
+            this.текстToolStripMenuItem.Click += new System.EventHandler(this.текстToolStripMenuItem_Click);
             // 
             // друкToolStripMenuItem
             // 
             this.друкToolStripMenuItem.Name = "друкToolStripMenuItem";
-            this.друкToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
+            this.друкToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.друкToolStripMenuItem.Text = "Друк";
             this.друкToolStripMenuItem.Click += new System.EventHandler(this.друкToolStripMenuItem_Click);
             // 
@@ -398,5 +416,7 @@
         private Button button2;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private PrintPreviewDialog printPreviewDialog1;
+        private ToolStripMenuItem зображенняToolStripMenuItem;
+        private ToolStripMenuItem текстToolStripMenuItem;
     }
 }

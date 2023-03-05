@@ -9,11 +9,12 @@ namespace MOK_MainInterface.Cypher
     public class CaesarCipher
     {
         const string ukrletters = "АБВГДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
-        const string engletters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string engletters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const string numbers = "0123456789 +/=";
 
         private string UkrCode(string text, int k)
         {
-            var fullUkrletters = ukrletters + ukrletters.ToLower();
+            var fullUkrletters = ukrletters + ukrletters.ToLower() + numbers;
             var letterQty = fullUkrletters.Length;
             var retVal = "";
             for (int i = 0; i < text.Length; i++)
@@ -37,7 +38,7 @@ namespace MOK_MainInterface.Cypher
 
         private string EnglishCode(string text, int k)
         {
-            var fullEngletters = engletters + engletters.ToLower();
+            var fullEngletters = engletters + engletters.ToLower() + numbers;
             var letterQty = fullEngletters.Length;
             var retVal = "";
             for (int i = 0; i < text.Length; i++)
