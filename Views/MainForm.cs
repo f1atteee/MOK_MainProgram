@@ -11,6 +11,9 @@ using MOK_MainInterface.Cypher;
 using System.Drawing.Printing;
 using static MOK_MainInterface.Cypher.BruteForceAlgo;
 using System.Drawing.Imaging;
+using Newtonsoft.Json;
+using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MOK_MainInterface.Views
 {
@@ -25,9 +28,12 @@ namespace MOK_MainInterface.Views
         public bool ChangeLan { get; set; }
         public bool Language { get; set; }
 
+        public bool ImageTrue { get; set; }
+
         public MainForm()
         {
             InitializeComponent();
+            ImageTrue = false;
         }
 
         private void вихідToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +60,7 @@ namespace MOK_MainInterface.Views
             {
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Filter =
-                   "All files (*.*)|*.*";
+                   "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG|Text Files (*.txt)|*.TXT";
                 dialog.InitialDirectory = "C:\\";
                 dialog.Title = "Select your file";
                 if (dialog.ShowDialog() == DialogResult.OK)
@@ -67,13 +73,12 @@ namespace MOK_MainInterface.Views
                     }
                     else
                     {
-                        Image image = Image.FromFile(dialog.FileName);
-                        MemoryStream memoryStream = new MemoryStream();
-                        image.Save(memoryStream, ImageFormat.Png); // можна замінити на інший формат
-                        byte[] imageBytes = memoryStream.ToArray();
+                        string imagePath = dialog.FileName;
+                        byte[] imageBytes = File.ReadAllBytes(imagePath);
                         string base64String = Convert.ToBase64String(imageBytes);
                         richTextBox1.Text = base64String;
                         MessageBox.Show("Ви відкрили зображення.");
+                        ImageTrue = true;
                     }
                 }
             }
@@ -92,12 +97,20 @@ namespace MOK_MainInterface.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(ChangeCR == false && ChangeLan == false)
+            ImageTrue = false;
+            if (ChangeCR == false && ChangeLan == false)
             {
                 MessageBox.Show("Будь - ласка оберіть Тип шифрування або Мову шифру");
             }
             else
             {
+                if(ImageTrue)
+                {
+                    byte[] base64Bytes = Convert.FromBase64String(richTextBox1.Text);
+                    string plaintext = Encoding.UTF8.GetString(base64Bytes);
+                }
+
+
                 if (richTextBox1.Text == "")
                 {
                     MessageBox.Show("Введіть текст для шифрування!!!");
@@ -119,12 +132,11 @@ namespace MOK_MainInterface.Views
                     }
                     else if (Language && !Crypto)// укр мова зашифрувати
                     {
-                        
+
                         richTextBox2.Text = ab.UkrEncrypt(richTextBox1.Text, StepCrp);
                     }
                 }
-                
-            }          
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -187,45 +199,84 @@ namespace MOK_MainInterface.Views
 
         private void методГрубоїСилиToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DelBruteForceAlgo testCallback = delegate (ref char[] inputs)
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            CaesarCipher ab = new CaesarCipher();
+
+            string encryptedText = richTextBox2.Text;
+
+            if (string.IsNullOrEmpty(encryptedText))
             {
-                var str = new string(inputs);
-                return (str == richTextBox2.Text);
-            };
+                MessageBox.Show("Текстове поле для шифрування порожнє", "Помилка");
+                return;
+            }
 
+            for (int step = 1; step <= 1000; step++)
+            {
+                string decryptedText = ab.EngDecrypt(encryptedText, step);
+                if (decryptedText == richTextBox1.Text)
+                {
+                    stopwatch.Stop();
+                    MessageBox.Show($"Витрачений час: {stopwatch.ElapsedMilliseconds} мс, Ключ: {step}", "Атака 'грубою силою'");
 
-            int result = BruteForce(richTextBox1.Text, Language);
-            MessageBox.Show("Result - " + result);
+                    richTextBox2.Text = decryptedText;
+                    return;
+                }
+            }
+
+            MessageBox.Show("Ключ не знайдено", "Помилка");
         }
 
         private void побудуватиЧастотніТаблиціToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            FrequencyTable fb = new FrequencyTable();
-            fb.InputText = richTextBox1.Text;
-            fb.KeyLenght = StepCrp;
-            fb.ShowDialog();
-            */
+            Form tableForm = new Form();
+            tableForm.Text = "Частотна таблиця";
+            tableForm.Size = new Size(500, 700);
+
+            string fileName = "Dict.json";
+            string directoryPath = @"E:\C# програмування\MOK_y2023\MOK_MainInterface\Files\";
+            string filePath = Path.Combine(directoryPath, fileName);
+            string json = File.ReadAllText(filePath);
+            Dictionary<string, int> dict = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
+            SortedDictionary<string, int> sortedDict = new SortedDictionary<string, int>(dict, new KeyComparer());
+
+            DataGridView enTable = new DataGridView();
+            DataTable table = new DataTable();
+
+            table.Columns.Add("Ключ", typeof(string));
+            table.Columns.Add("Частота", typeof(int));
+
+            foreach (var item in sortedDict)
+            {
+                table.Rows.Add(item.Key, item.Value);
+            }
+
+            enTable.DataSource = table;
+            enTable.Size = new Size(500, 700);
+            tableForm.Controls.Add(enTable);
+            tableForm.ShowDialog();
         }
 
         private void зображенняToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog sfd = new SaveFileDialog()
+            {
+                Filter = "Pictures (*.png)|*.png|Images (*.jpeg)|*.jpeg|All files (*.*)|*.*",
+                Title = "Save image file"
+            };
             try
             {
-                string base64String = richTextBox1.Text;
-                byte[] imageBytes = Convert.FromBase64String(base64String);
-                MemoryStream memoryStream = new MemoryStream(imageBytes);
-                Image image = Image.FromStream(memoryStream);
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "PNG Image|*.png|JPEG Image|*.jpg;*.jpeg";
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    image.Save(saveFileDialog.FileName, ImageFormat.Png);
+                    byte[] ib = Convert.FromBase64String(richTextBox2.Text);
+                    File.WriteAllBytes(sfd.FileName, ib);
+                    MessageBox.Show("Зображення успішно збережено.", "Успіх");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Помилка - " + ex.Message);
+                MessageBox.Show($"Щось пішло не так. \n\nПовідомлення про помилку: {ex.Message}", "Помилка");
             }
 
         }
@@ -255,6 +306,47 @@ namespace MOK_MainInterface.Views
             {
                 MessageBox.Show("Помилка - " + ex.Message);
             }
+        }
+
+        public void WriteJsonFile(Dictionary<string, int> keyValuePairs, string filePath)
+        {
+            string json = JsonConvert.SerializeObject(keyValuePairs, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(filePath, json);
+        }
+
+        class KeyComparer : IComparer<string>
+        {
+            public int Compare(string x, string y)
+            {
+                return x.CompareTo(y);
+            }
+        }
+
+
+        public static Dictionary<string, int> CountLetters(string input)
+        {
+            Dictionary<string, int> letterCounts = new Dictionary<string, int>();
+            foreach (char c in input)
+            {
+                if (Char.IsLetter(c))
+                {
+                    if (letterCounts.ContainsKey(c.ToString()))
+                    {
+                        letterCounts[c.ToString()]++;
+                    }
+                    else
+                    {
+                        letterCounts.Add(c.ToString(), 1);
+                    }
+                }
+            }
+            return letterCounts;
+        }
+
+
+        private void атакаНаШифрToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

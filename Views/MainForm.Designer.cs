@@ -75,7 +75,8 @@
             this.вихідToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(777, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(888, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -86,13 +87,13 @@
             this.зберегтиToolStripMenuItem,
             this.друкToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // відкритиToolStripMenuItem
             // 
             this.відкритиToolStripMenuItem.Name = "відкритиToolStripMenuItem";
-            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.відкритиToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.відкритиToolStripMenuItem.Text = "Відкрити";
             this.відкритиToolStripMenuItem.Click += new System.EventHandler(this.відкритиToolStripMenuItem_Click);
             // 
@@ -102,27 +103,27 @@
             this.зображенняToolStripMenuItem,
             this.текстToolStripMenuItem});
             this.зберегтиToolStripMenuItem.Name = "зберегтиToolStripMenuItem";
-            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.зберегтиToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.зберегтиToolStripMenuItem.Text = "Зберегти";
             // 
             // зображенняToolStripMenuItem
             // 
             this.зображенняToolStripMenuItem.Name = "зображенняToolStripMenuItem";
-            this.зображенняToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.зображенняToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.зображенняToolStripMenuItem.Text = "Зображення";
             this.зображенняToolStripMenuItem.Click += new System.EventHandler(this.зображенняToolStripMenuItem_Click);
             // 
             // текстToolStripMenuItem
             // 
             this.текстToolStripMenuItem.Name = "текстToolStripMenuItem";
-            this.текстToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.текстToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
             this.текстToolStripMenuItem.Text = "Текст";
             this.текстToolStripMenuItem.Click += new System.EventHandler(this.текстToolStripMenuItem_Click);
             // 
             // друкToolStripMenuItem
             // 
             this.друкToolStripMenuItem.Name = "друкToolStripMenuItem";
-            this.друкToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.друкToolStripMenuItem.Size = new System.Drawing.Size(155, 26);
             this.друкToolStripMenuItem.Text = "Друк";
             this.друкToolStripMenuItem.Click += new System.EventHandler(this.друкToolStripMenuItem_Click);
             // 
@@ -132,7 +133,7 @@
             this.атакаНаШифрToolStripMenuItem,
             this.побудуватиЧастотніТаблиціToolStripMenuItem});
             this.шифруванняToolStripMenuItem.Name = "шифруванняToolStripMenuItem";
-            this.шифруванняToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.шифруванняToolStripMenuItem.Size = new System.Drawing.Size(114, 24);
             this.шифруванняToolStripMenuItem.Text = "Шифрування";
             // 
             // атакаНаШифрToolStripMenuItem
@@ -140,34 +141,35 @@
             this.атакаНаШифрToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.методГрубоїСилиToolStripMenuItem});
             this.атакаНаШифрToolStripMenuItem.Name = "атакаНаШифрToolStripMenuItem";
-            this.атакаНаШифрToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.атакаНаШифрToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.атакаНаШифрToolStripMenuItem.Text = "Атака на шифр";
+            this.атакаНаШифрToolStripMenuItem.Click += new System.EventHandler(this.атакаНаШифрToolStripMenuItem_Click);
             // 
             // методГрубоїСилиToolStripMenuItem
             // 
             this.методГрубоїСилиToolStripMenuItem.Name = "методГрубоїСилиToolStripMenuItem";
-            this.методГрубоїСилиToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.методГрубоїСилиToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.методГрубоїСилиToolStripMenuItem.Text = "Метод \"Грубої сили\"";
             this.методГрубоїСилиToolStripMenuItem.Click += new System.EventHandler(this.методГрубоїСилиToolStripMenuItem_Click);
             // 
             // побудуватиЧастотніТаблиціToolStripMenuItem
             // 
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Name = "побудуватиЧастотніТаблиціToolStripMenuItem";
-            this.побудуватиЧастотніТаблиціToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.побудуватиЧастотніТаблиціToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Text = "Побудувати частотні таблиці";
             this.побудуватиЧастотніТаблиціToolStripMenuItem.Click += new System.EventHandler(this.побудуватиЧастотніТаблиціToolStripMenuItem_Click);
             // 
             // проСистемуToolStripMenuItem
             // 
             this.проСистемуToolStripMenuItem.Name = "проСистемуToolStripMenuItem";
-            this.проСистемуToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.проСистемуToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.проСистемуToolStripMenuItem.Text = "Про систему";
             this.проСистемуToolStripMenuItem.Click += new System.EventHandler(this.проСистемуToolStripMenuItem_Click);
             // 
             // вихідToolStripMenuItem
             // 
             this.вихідToolStripMenuItem.Name = "вихідToolStripMenuItem";
-            this.вихідToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.вихідToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.вихідToolStripMenuItem.Text = "Вихід";
             this.вихідToolStripMenuItem.Click += new System.EventHandler(this.вихідToolStripMenuItem_Click);
             // 
@@ -175,9 +177,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(13, 106);
+            this.label1.Location = new System.Drawing.Point(15, 141);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 26);
+            this.label1.Size = new System.Drawing.Size(310, 34);
             this.label1.TabIndex = 2;
             this.label1.Text = "ДО ШИФРУВАННЯ";
             // 
@@ -185,27 +187,25 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(436, 106);
+            this.label2.Location = new System.Drawing.Point(498, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 26);
+            this.label2.Size = new System.Drawing.Size(366, 34);
             this.label2.TabIndex = 2;
             this.label2.Text = "ПІСЛЯ ШИФРУВАННЯ";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 147);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.richTextBox1.Location = new System.Drawing.Point(14, 196);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(273, 356);
+            this.richTextBox1.Size = new System.Drawing.Size(311, 473);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(436, 147);
-            this.richTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.richTextBox2.Location = new System.Drawing.Point(498, 196);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(321, 356);
+            this.richTextBox2.Size = new System.Drawing.Size(366, 473);
             this.richTextBox2.TabIndex = 3;
             this.richTextBox2.Text = "";
             // 
@@ -213,9 +213,11 @@
             // 
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(291, 147);
+            this.groupBox1.Location = new System.Drawing.Point(333, 196);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(139, 107);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox1.Size = new System.Drawing.Size(159, 143);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Дія";
@@ -223,9 +225,10 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(15, 65);
+            this.radioButton2.Location = new System.Drawing.Point(17, 87);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(102, 19);
+            this.radioButton2.Size = new System.Drawing.Size(124, 24);
             this.radioButton2.TabIndex = 0;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Зашифрувати";
@@ -235,9 +238,10 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(15, 30);
+            this.radioButton1.Location = new System.Drawing.Point(17, 40);
+            this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(108, 19);
+            this.radioButton1.Size = new System.Drawing.Size(132, 24);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Розшифрувати";
@@ -246,9 +250,10 @@
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(189, 39);
+            this.trackBar1.Location = new System.Drawing.Point(216, 52);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(533, 45);
+            this.trackBar1.Size = new System.Drawing.Size(609, 56);
             this.trackBar1.TabIndex = 5;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll_1);
             // 
@@ -256,9 +261,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(12, 39);
+            this.label3.Location = new System.Drawing.Point(14, 52);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 17);
+            this.label3.Size = new System.Drawing.Size(200, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Крок Шифрування:";
             // 
@@ -266,9 +271,11 @@
             // 
             this.groupBox2.Controls.Add(this.radioButton3);
             this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Location = new System.Drawing.Point(291, 395);
+            this.groupBox2.Location = new System.Drawing.Point(333, 527);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(139, 107);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.groupBox2.Size = new System.Drawing.Size(159, 143);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Мова";
@@ -276,9 +283,10 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(15, 65);
+            this.radioButton3.Location = new System.Drawing.Point(17, 87);
+            this.radioButton3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(117, 19);
+            this.radioButton3.Size = new System.Drawing.Size(146, 24);
             this.radioButton3.TabIndex = 0;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Англійська мова";
@@ -288,9 +296,10 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(15, 30);
+            this.radioButton4.Location = new System.Drawing.Point(17, 40);
+            this.radioButton4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(116, 19);
+            this.radioButton4.Size = new System.Drawing.Size(146, 24);
             this.radioButton4.TabIndex = 0;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Українська мова";
@@ -299,9 +308,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(291, 309);
+            this.button1.Location = new System.Drawing.Point(333, 412);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 37);
+            this.button1.Size = new System.Drawing.Size(159, 49);
             this.button1.TabIndex = 7;
             this.button1.Text = "Виконати";
             this.button1.UseVisualStyleBackColor = true;
@@ -311,19 +321,18 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(727, 39);
+            this.label4.Location = new System.Drawing.Point(831, 52);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 17);
+            this.label4.Size = new System.Drawing.Size(33, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "00";
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button2.Location = new System.Drawing.Point(315, 106);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(360, 141);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(91, 26);
+            this.button2.Size = new System.Drawing.Size(104, 35);
             this.button2.TabIndex = 9;
             this.button2.Text = "<--";
             this.button2.UseVisualStyleBackColor = true;
@@ -346,9 +355,9 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(777, 514);
+            this.ClientSize = new System.Drawing.Size(888, 685);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button1);
@@ -363,6 +372,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.Text = "Ширувальник v1.0.0.6";
             this.Load += new System.EventHandler(this.MainForm_Load);
