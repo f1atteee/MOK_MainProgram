@@ -142,9 +142,7 @@
             this.методГрубоїСилиToolStripMenuItem});
             this.атакаНаШифрToolStripMenuItem.Name = "атакаНаШифрToolStripMenuItem";
             this.атакаНаШифрToolStripMenuItem.Size = new System.Drawing.Size(292, 26);
-            this.атакаНаШифрToolStripMenuItem.Text = "Атака на шифр";
-            this.атакаНаШифрToolStripMenuItem.Click += new System.EventHandler(this.атакаНаШифрToolStripMenuItem_Click);
-            // 
+            this.атакаНаШифрToolStripMenuItem.Text = "Атака на шифр";            // 
             // методГрубоїСилиToolStripMenuItem
             // 
             this.методГрубоїСилиToolStripMenuItem.Name = "методГрубоїСилиToolStripMenuItem";

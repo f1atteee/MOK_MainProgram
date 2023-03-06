@@ -20,14 +20,11 @@ namespace MOK_MainInterface.Views
 
     public partial class MainForm : Form
     {
-
         public int StepCrp { get; set; }
-
         public bool Crypto { get; set; } // true розшифрувати; false зашифрувати
         public bool ChangeCR { get; set; }
         public bool ChangeLan { get; set; }
         public bool Language { get; set; }
-
         public bool ImageTrue { get; set; }
 
         public MainForm()
@@ -100,7 +97,7 @@ namespace MOK_MainInterface.Views
             ImageTrue = false;
             if (ChangeCR == false && ChangeLan == false)
             {
-                MessageBox.Show("Будь - ласка оберіть Тип шифрування або Мову шифру");
+                MessageBox.Show("Будь ласка оберіть Тип шифрування або Мову шифру");
             }
             else
             {
@@ -208,7 +205,7 @@ namespace MOK_MainInterface.Views
 
             if (string.IsNullOrEmpty(encryptedText))
             {
-                MessageBox.Show("Текстове поле для шифрування порожнє", "Помилка");
+                MessageBox.Show("Заповніть текстове поле для шифрування", "Помилка");
                 return;
             }
 
@@ -218,44 +215,18 @@ namespace MOK_MainInterface.Views
                 if (decryptedText == richTextBox1.Text)
                 {
                     stopwatch.Stop();
-                    MessageBox.Show($"Витрачений час: {stopwatch.ElapsedMilliseconds} мс, Ключ: {step}", "Атака 'грубою силою'");
+                    MessageBox.Show($"Час: {stopwatch.ElapsedMilliseconds} мс, Ключ: {step}", "Атака 'грубою силою'");
 
                     richTextBox2.Text = decryptedText;
                     return;
                 }
             }
-
             MessageBox.Show("Ключ не знайдено", "Помилка");
         }
 
         private void побудуватиЧастотніТаблиціToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form tableForm = new Form();
-            tableForm.Text = "Частотна таблиця";
-            tableForm.Size = new Size(500, 700);
-
-            string fileName = "Dict.json";
-            string directoryPath = @"E:\C# програмування\MOK_y2023\MOK_MainInterface\Files\";
-            string filePath = Path.Combine(directoryPath, fileName);
-            string json = File.ReadAllText(filePath);
-            Dictionary<string, int> dict = JsonConvert.DeserializeObject<Dictionary<string, int>>(json);
-            SortedDictionary<string, int> sortedDict = new SortedDictionary<string, int>(dict, new KeyComparer());
-
-            DataGridView enTable = new DataGridView();
-            DataTable table = new DataTable();
-
-            table.Columns.Add("Ключ", typeof(string));
-            table.Columns.Add("Частота", typeof(int));
-
-            foreach (var item in sortedDict)
-            {
-                table.Rows.Add(item.Key, item.Value);
-            }
-
-            enTable.DataSource = table;
-            enTable.Size = new Size(500, 700);
-            tableForm.Controls.Add(enTable);
-            tableForm.ShowDialog();
+            MessageBox.Show("Частотні таблиці ще у розробці...");
         }
 
         private void зображенняToolStripMenuItem_Click(object sender, EventArgs e)
@@ -271,14 +242,13 @@ namespace MOK_MainInterface.Views
                 {
                     byte[] ib = Convert.FromBase64String(richTextBox2.Text);
                     File.WriteAllBytes(sfd.FileName, ib);
-                    MessageBox.Show("Зображення успішно збережено.", "Успіх");
+                    MessageBox.Show("Успішно");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Щось пішло не так. \n\nПовідомлення про помилку: {ex.Message}", "Помилка");
+                MessageBox.Show($"Помилка - {ex.Message}");
             }
-
         }
 
         private void текстToolStripMenuItem_Click(object sender, EventArgs e)
@@ -306,47 +276,6 @@ namespace MOK_MainInterface.Views
             {
                 MessageBox.Show("Помилка - " + ex.Message);
             }
-        }
-
-        public void WriteJsonFile(Dictionary<string, int> keyValuePairs, string filePath)
-        {
-            string json = JsonConvert.SerializeObject(keyValuePairs, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(filePath, json);
-        }
-
-        class KeyComparer : IComparer<string>
-        {
-            public int Compare(string x, string y)
-            {
-                return x.CompareTo(y);
-            }
-        }
-
-
-        public static Dictionary<string, int> CountLetters(string input)
-        {
-            Dictionary<string, int> letterCounts = new Dictionary<string, int>();
-            foreach (char c in input)
-            {
-                if (Char.IsLetter(c))
-                {
-                    if (letterCounts.ContainsKey(c.ToString()))
-                    {
-                        letterCounts[c.ToString()]++;
-                    }
-                    else
-                    {
-                        letterCounts.Add(c.ToString(), 1);
-                    }
-                }
-            }
-            return letterCounts;
-        }
-
-
-        private void атакаНаШифрToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

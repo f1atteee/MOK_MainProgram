@@ -10,7 +10,6 @@ namespace MOK_MainInterface.Cypher
     {
         const string ukrletters = "АБВГДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ";
         string engletters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        //const string numbers = "0123456789 +/=";
 
         private string UkrCode(string text, int k)
         {
